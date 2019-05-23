@@ -36,7 +36,7 @@ def select_series_title_with_most_human_characters
   JOIN characters ON series_id = series.id
   WHERE characters.species = \"human\" 
   GROUP BY series.title 
-  WHERE COUNT(series.title) > 
+  HAVING COUNT(series.title) > 
    (SELECT max(COUNT(characters.species)) FROM characters)
   ;"
 end
