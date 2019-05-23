@@ -34,9 +34,9 @@ def select_series_title_with_most_human_characters
   "SELECT series.title
   FROM series
   JOIN characters ON series_id = series.id
-  WHERE characters.species = \"human\" AND
-  
-   WHERE COUNT(characters.species) > (SELECT max(LENGTH(characters.motto)) FROM characters);"
+  WHERE characters.species = \"human\" 
+  GROUP BY characters.species 
+  WHERE COUNT(characters.species) > (SELECT max(COUNT(characters.species)) FROM characters);
   ;"
 end
 
