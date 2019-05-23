@@ -31,12 +31,12 @@ def select_name_and_series_subgenres_of_authors
 end
 
 def select_series_title_with_most_human_characters
-  "SELECT series.title
+  "SELECT series.title, SUM(series.title)
   FROM series
   JOIN characters ON series_id = series.id
   WHERE characters.species = \"human\" 
   GROUP BY series.title 
-  HAVING SUM(series.title) > 0
+  HAVING SUM(series.title) > 
   ;"
 end
 
